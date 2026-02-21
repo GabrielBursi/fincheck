@@ -1,0 +1,71 @@
+{
+  "$schema": "https://claude.ai/schemas/claude-code-config.json",
+  "name": "Fincheck",
+  "description": "Personal finance management app - Monorepo with DDD + Clean Architecture",
+  "contexts": [
+    {
+      "name": "Project Root",
+      "path": "."
+    },
+    {
+      "name": "Architecture Rules",
+      "path": "docs/claude-code/architecture.md"
+    },
+    {
+      "name": "Domain Model",
+      "path": "docs/claude-code/domain.md"
+    },
+    {
+      "name": "Clean Code Rules",
+      "path": "docs/CLEAN_CODE_RULES.md"
+    },
+    {
+      "name": "TypeScript Rules",
+      "path": "docs/TYPESCRIPT_RULES.md"
+    },
+    {
+      "name": "NestJS Rules",
+      "path": "docs/NEST_RULES.md"
+    },
+    {
+      "name": "React Rules",
+      "path": "docs/REACT_RULES.md"
+    }
+  ],
+  "ignore": [
+    "node_modules/",
+    "dist/",
+    "build/",
+    ".next/",
+    "coverage/",
+    ".env.local",
+    ".env.*.local"
+  ],
+  "rules": {
+    "codeStyle": "DDD + Clean Architecture + Hexagonal Architecture",
+    "dependencyDirection": "apps -> packages/core. Never core -> apps",
+    "fileNaming": "kebab-case for files and directories",
+    "classNaming": "PascalCase",
+    "functionNaming": "camelCase",
+    "maxFileLines": 300,
+    "maxFunctionLines": 20,
+    "maxParameters": 3,
+    "typescript": {
+      "noAny": true,
+      "strict": true,
+      "noExplicitAny": true
+    }
+  },
+  "monorepo": {
+    "structure": {
+      "apps/api": "NestJS HTTP adapter with controllers and DI wiring",
+      "apps/web": "React frontend application",
+      "packages/core": "Domain layer (entities, value objects) + Application layer (use cases)"
+    },
+    "workspaces": [
+      "packages/core",
+      "apps/api",
+      "apps/web"
+    ]
+  }
+}
