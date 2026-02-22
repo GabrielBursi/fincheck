@@ -1,0 +1,68 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "ES2023",
+    "lib": ["ES2023"],
+
+    /* Module Resolution */
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "resolvePackageJsonExports": true,
+    "resolvePackageJsonImports": true,
+
+    /* Emitting */
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "downlevelIteration": false,
+    "inlineSourceMap": false,
+    "inlineSources": false,
+
+    /* Type Checking */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "exactOptionalPropertyTypes": false,
+
+    /* Completeness */
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "incremental": true,
+
+    /* Interop Constraints */
+    "verbatimModuleSyntax": true,
+    "allowImportingTsExtensions": false,
+
+    /* Output */
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": ".",
+
+    /* Paths for module resolution (can be overridden in specific configs) */
+    "paths": {
+      "@/*": ["./src/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@core/*": ["../core/src/*"]
+    },
+
+    /* Decorators (for NestJS) */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "build"]
+}

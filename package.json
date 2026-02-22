@@ -1,0 +1,36 @@
+{
+  "name": "fincheck-monorepo",
+  "version": "1.0.0",
+  "description": "O Fincheck é um aplicativo fullstack desenvolvido para ajudar usuários a monitorar suas finanças pessoais de forma fácil e eficiente.",
+  "private": true,
+  "license": "UNLICENSED",
+  "author": "Gabriel Bursi",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "format": "prettier --write \"**/*.{ts,tsx,json,md,js,mjs}\" --ignore-path .gitignore",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "pnpm run lint --fix",
+    "typecheck": "tsc --noEmit",
+    "clean": "pnpm -r clean && rm -rf node_modules pnpm-lock.yaml"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@types/node": "^22.10.7",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.2",
+    "globals": "^16.0.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.20.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@10.30.1"
+}

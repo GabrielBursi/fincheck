@@ -5,13 +5,10 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "baseUrl": ".",
-    "ignoreDeprecations": "6.0",
     "paths": {
-      "@/*": ["./src/*"],
-      "@shared/*": ["./src/shared/*"],
-      "@core/*": ["../../packages/core/src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "test"]
+  "exclude": ["node_modules", "dist"]
 }
