@@ -41,7 +41,6 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
-    "incremental": true,
 
     /* Interop Constraints */
     "verbatimModuleSyntax": true,

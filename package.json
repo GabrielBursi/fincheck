@@ -13,7 +13,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,json,md,js,mjs}\" --ignore-path .gitignore",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "pnpm run lint --fix",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc -b --noEmit",
     "clean": "pnpm -r clean && rm -rf node_modules pnpm-lock.yaml"
   },
   "devDependencies": {
