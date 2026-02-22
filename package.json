@@ -2,6 +2,7 @@
   "name": "fincheck-monorepo",
   "version": "1.0.0",
   "description": "O Fincheck é um aplicativo fullstack desenvolvido para ajudar usuários a monitorar suas finanças pessoais de forma fácil e eficiente.",
+  "type": "module",
   "private": true,
   "license": "UNLICENSED",
   "author": "Gabriel Bursi",

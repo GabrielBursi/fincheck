@@ -1,7 +1,7 @@
-import { NestExpressApplication } from '@nestjs/platform-express';
+import type { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-export const configSwagger = (app: NestExpressApplication) => {
+export const configSwagger = (app: NestExpressApplication): void => {
   const config = new DocumentBuilder()
     .setTitle('Fincheck API')
     .setDescription(

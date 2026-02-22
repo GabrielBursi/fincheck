@@ -2,6 +2,7 @@
   "name": "@fincheck/api",
   "version": "1.0.0",
   "description": "NestJS backend for Fincheck - Personal finance management application",
+  "type": "module",
   "author": "Gabriel Bursi",
   "private": true,
   "license": "UNLICENSED",

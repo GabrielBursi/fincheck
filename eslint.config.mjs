@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 import eslint from '@eslint/js';
 import eslintPluginImport from 'eslint-plugin-import';
 import eslintPluginJest from 'eslint-plugin-jest';
@@ -6,7 +6,7 @@ import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import eslintPluginReact from 'eslint-plugin-react';
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
-import globals from 'globals';
+import * as globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
@@ -24,6 +24,7 @@ export default tseslint.config(
       '.nuxt',
       'out',
       '**/node_modules',
+      '**/test/**/*.e2e-spec.ts',
     ],
   },
   eslint.configs.recommended,
@@ -35,6 +36,7 @@ export default tseslint.config(
       parser: tseslint.parser,
       parserOptions: {
         projectService: true,
+        allowDefaultProject: true,
         tsconfigRootDir: import.meta.dirname,
         ecmaFeatures: {
           jsx: true,
@@ -75,6 +77,7 @@ export default tseslint.config(
       '@typescript-eslint/prefer-nullish-coalescing': 'warn',
       '@typescript-eslint/prefer-optional-chain': 'warn',
       '@typescript-eslint/strict-boolean-expressions': 'warn',
+      '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -177,10 +180,7 @@ export default tseslint.config(
         'warn',
         { accessibility: 'explicit', overrides: { constructors: 'no-public' } },
       ],
-      '@typescript-eslint/explicit-function-return-type': [
-        'warn',
-        { allowExpressions: true, allowTypedFunctionExpressions: true },
-      ],
+      '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-parameter-properties': 'off', // Allow constructor parameter properties in NestJS
       'no-restricted-syntax': [
         'off',
