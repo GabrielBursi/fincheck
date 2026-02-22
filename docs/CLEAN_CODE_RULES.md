@@ -1,7 +1,7 @@
 # Clean Code Rules for Claude Code
 
 > Princípios universais de código limpo — linguagem e framework agnósticos.
-> Baseados em *Clean Code* e *Clean Architecture* de Robert C. Martin (Uncle Bob).
+> Baseados em _Clean Code_ e _Clean Architecture_ de Robert C. Martin (Uncle Bob).
 
 ---
 
@@ -96,12 +96,14 @@ int daysSinceLastModification = 14;
 ```
 
 **Comentários aceitáveis:**
+
 - **Legais**: licença, copyright
 - **Intenção não-óbvia**: decisão arquitetural que o código não consegue expressar
 - **TODO/FIXME**: rastreados e com responsável
 - **JSDoc/docstrings**: em APIs públicas de bibliotecas
 
 **Nunca:**
+
 - Código comentado — use controle de versão
 - Comentários desatualizados — mentem mais que silêncio
 - Ruído: `// construtor`, `// getters e setters`
@@ -236,14 +238,14 @@ Infrastructure        → banco, APIs externas, email, filesystem
 
 ### Tamanhos limite
 
-| Artefato | Limite |
-|---|---|
-| Arquivo | 200–300 linhas |
-| Classe | 200 linhas |
-| Função/método | 20 linhas |
-| Parâmetros | 3 |
-| Profundidade de aninhamento | 2 níveis |
-| Colunas por linha | 120 |
+| Artefato                    | Limite         |
+| --------------------------- | -------------- |
+| Arquivo                     | 200–300 linhas |
+| Classe                      | 200 linhas     |
+| Função/método               | 20 linhas      |
+| Parâmetros                  | 3              |
+| Profundidade de aninhamento | 2 níveis       |
+| Colunas por linha           | 120            |
 
 ### DRY vs WET vs DAMP
 
@@ -269,6 +271,7 @@ Infrastructure        → banco, APIs externas, email, filesystem
 > **"Deixe o código mais limpo do que você encontrou."**
 
 A cada mudança:
+
 - Renomeie uma variável obscura que você encontrou
 - Quebre uma função longa em duas
 - Elimine uma duplicação que você notou
@@ -280,15 +283,15 @@ Refactoring não é uma tarefa separada — é parte do trabalho diário.
 
 ## Quick Reference
 
-| ✅ Faça | ❌ Evite |
-|---|---|
-| Nomes que revelam intenção | Abreviações, nomes genéricos (`data`, `info`, `temp`) |
-| Funções com propósito único | Funções "e também" (fazem duas coisas) |
-| Guard clauses + early return | Pirâmides de aninhamento |
-| Exceções com contexto | Catch vazio / engolir erros |
-| Dependência de abstrações (DIP) | Dependência de implementações concretas |
-| Testes AAA com nomes descritivos | Testes com lógica ou múltiplas asserções |
-| Compor comportamento | Herdar para reutilizar |
-| Código auto-documentado | Comentários que repetem o código |
-| Refatorar continuamente | Acumular débito técnico para "depois" |
-| Lei de Demeter: fale com amigos diretos | Train wrecks: `a.b().c().d()` |
+| ✅ Faça                                 | ❌ Evite                                              |
+| --------------------------------------- | ----------------------------------------------------- |
+| Nomes que revelam intenção              | Abreviações, nomes genéricos (`data`, `info`, `temp`) |
+| Funções com propósito único             | Funções "e também" (fazem duas coisas)                |
+| Guard clauses + early return            | Pirâmides de aninhamento                              |
+| Exceções com contexto                   | Catch vazio / engolir erros                           |
+| Dependência de abstrações (DIP)         | Dependência de implementações concretas               |
+| Testes AAA com nomes descritivos        | Testes com lógica ou múltiplas asserções              |
+| Compor comportamento                    | Herdar para reutilizar                                |
+| Código auto-documentado                 | Comentários que repetem o código                      |
+| Refatorar continuamente                 | Acumular débito técnico para "depois"                 |
+| Lei de Demeter: fale com amigos diretos | Train wrecks: `a.b().c().d()`                         |

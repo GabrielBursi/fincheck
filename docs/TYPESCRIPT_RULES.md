@@ -12,7 +12,9 @@ function parse(input: unknown): string {
 }
 
 // ❌
-function parse(input: any): string { return input; }
+function parse(input: any): string {
+  return input;
+}
 ```
 
 **Avoid type assertions (`as`).** Prefer type guards.
@@ -40,7 +42,7 @@ Use **descriptive names** with defaults and constraints.
 function getData<TData = unknown>(id: string): Promise<TData>;
 function merge<TBase extends object, TOverride extends Partial<TBase>>(
   base: TBase,
-  override: TOverride
+  override: TOverride,
 ): TBase & TOverride;
 
 // ❌
@@ -48,6 +50,7 @@ function getData<T>(id: string): Promise<T>;
 ```
 
 **Conventions:**
+
 - Names: `TData`, `TResponse`, `TItem`, `TKey`, `TValue`
 - Always add `extends` constraints when type must satisfy a shape
 - Provide defaults (`= unknown`, `= never`) when callers often omit the param
@@ -109,8 +112,8 @@ Enable `strictNullChecks`. Prefer `undefined` over `null` for optional values.
 ```typescript
 // ✅
 interface Config {
-  timeout?: number;        // optional — undefined
-  retries: number | null;  // explicit null means "disabled"
+  timeout?: number; // optional — undefined
+  retries: number | null; // explicit null means "disabled"
 }
 
 // ✅ nullish coalescing / optional chaining
@@ -136,13 +139,19 @@ type RequestState<TData> =
 
 function render(state: RequestState<User>) {
   switch (state.status) {
-    case 'success': return state.data.name; // fully narrowed
-    case 'error':   return state.error.message;
+    case 'success':
+      return state.data.name; // fully narrowed
+    case 'error':
+      return state.error.message;
   }
 }
 
 // ❌ stringly-typed optional bag
-interface RequestState { loading?: boolean; data?: User; error?: Error; }
+interface RequestState {
+  loading?: boolean;
+  data?: User;
+  error?: Error;
+}
 ```
 
 ---
@@ -151,17 +160,17 @@ interface RequestState { loading?: boolean; data?: User; error?: Error; }
 
 Use built-ins before rolling your own.
 
-| Utility | Use |
-|---|---|
-| `Partial<T>` | All props optional |
-| `Required<T>` | All props required |
-| `Readonly<T>` | Immutable shape |
-| `Pick<T, K>` | Subset of props |
-| `Omit<T, K>` | Exclude props |
-| `Record<K, V>` | Typed dictionary |
-| `ReturnType<F>` | Infer return type |
-| `Parameters<F>` | Infer param tuple |
-| `Awaited<T>` | Unwrap Promise |
+| Utility          | Use                   |
+| ---------------- | --------------------- |
+| `Partial<T>`     | All props optional    |
+| `Required<T>`    | All props required    |
+| `Readonly<T>`    | Immutable shape       |
+| `Pick<T, K>`     | Subset of props       |
+| `Omit<T, K>`     | Exclude props         |
+| `Record<K, V>`   | Typed dictionary      |
+| `ReturnType<F>`  | Infer return type     |
+| `Parameters<F>`  | Infer param tuple     |
+| `Awaited<T>`     | Unwrap Promise        |
 | `NonNullable<T>` | Remove null/undefined |
 
 ```typescript
@@ -204,10 +213,15 @@ Prefer **const objects + union types** over `enum`.
 ```typescript
 // ✅
 const Direction = { Up: 'UP', Down: 'DOWN', Left: 'LEFT', Right: 'RIGHT' } as const;
-type Direction = typeof Direction[keyof typeof Direction]; // 'UP' | 'DOWN' | 'LEFT' | 'RIGHT'
+type Direction = (typeof Direction)[keyof typeof Direction]; // 'UP' | 'DOWN' | 'LEFT' | 'RIGHT'
 
 // ❌ — emits runtime code, numeric enums are unsafe
-enum Direction { Up, Down, Left, Right }
+enum Direction {
+  Up,
+  Down,
+  Left,
+  Right,
+}
 ```
 
 ---
@@ -222,7 +236,7 @@ class AppError extends Error {
   constructor(
     message: string,
     public readonly code: string,
-    public readonly cause?: unknown
+    public readonly cause?: unknown,
   ) {
     super(message);
     this.name = 'AppError';
@@ -261,14 +275,14 @@ async function fetchUser(id: string): Promise<User> {
 
 ## Quick Reference: Do / Don't
 
-| ✅ Do | ❌ Don't |
-|---|---|
-| `unknown` for dynamic input | `any` anywhere |
-| Type guards for narrowing | `as` type assertions |
-| Descriptive generic names (`TData`) | Single-letter generics (`T`) |
-| `interface` for object shapes | `type` for extensible object shapes |
-| `undefined` for optional values | `null` as default missing value |
-| `as const` on literal returns | Mutable inferred tuples |
-| `const` enum alternatives | `enum` (runtime overhead) |
-| Explicit return types on exports | Implicit any return types |
-| Discriminated unions for state | Optional boolean flag bags |
+| ✅ Do                               | ❌ Don't                            |
+| ----------------------------------- | ----------------------------------- |
+| `unknown` for dynamic input         | `any` anywhere                      |
+| Type guards for narrowing           | `as` type assertions                |
+| Descriptive generic names (`TData`) | Single-letter generics (`T`)        |
+| `interface` for object shapes       | `type` for extensible object shapes |
+| `undefined` for optional values     | `null` as default missing value     |
+| `as const` on literal returns       | Mutable inferred tuples             |
+| `const` enum alternatives           | `enum` (runtime overhead)           |
+| Explicit return types on exports    | Implicit any return types           |
+| Discriminated unions for state      | Optional boolean flag bags          |

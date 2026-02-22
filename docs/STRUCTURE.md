@@ -9,6 +9,7 @@ Seu projeto Fincheck foi **completamente reorganizado** e estruturado para traba
 ## 📊 Transformação da Estrutura
 
 ### ❌ Antes
+
 ```
 fincheck/
 ├── backend/
@@ -21,6 +22,7 @@ fincheck/
 ```
 
 ### ✅ Depois (Monorepo Profissional)
+
 ```
 fincheck/
 ├── 📁 apps/                     ← Adapters
@@ -44,14 +46,17 @@ fincheck/
 ## 📁 Arquivos Criados
 
 ### Configuração do Claude Code
+
 - ✅ **`.claude-code.json`** - Arquivo de configuração principal (raiz)
 - ✅ **`docs/claude-code/README.md`** - Guia de como usar Claude Code neste projeto
 
 ### Documentação Arquitetural
+
 - ✅ **`docs/STRUCTURE.md`** - Estrutura visual e diagramas (VOCÊ ESTÁ AQUI)
 - ✅ **`docs/README.md`** - Índice geral de toda documentação
 
 ### Documentação Reorganizada (movida de ARQUIVOS CLAUDE CODE)
+
 - ✅ **`docs/claude-code/CLAUDE.md`** - Visão geral do projeto
 - ✅ **`docs/claude-code/architecture.md`** - Arquitetura em profundidade
 - ✅ **`docs/claude-code/domain.md`** - Modelo de domínio
@@ -64,6 +69,7 @@ fincheck/
 - ✅ **`docs/REACT_RULES.md`** - React rules
 
 ### Limpeza
+
 - ✅ Pasta `backend/` **removida** (conteúdo migrado)
 - ✅ Pasta `ARQUIVOS CLAUDE CODE/` **removida** (conteúdo reorganizado)
 
@@ -72,6 +78,7 @@ fincheck/
 ## 🚀 Próximos Passos
 
 ### 1️⃣ **Entender a Nova Estrutura** (5 min)
+
 ```bash
 # Abra e leia nesta ordem:
 1. docs/README.md                    # Índice geral
@@ -80,6 +87,7 @@ fincheck/
 ```
 
 ### 2️⃣ **Familiarizar-se com a Arquitetura** (15 min)
+
 ```bash
 # Leia:
 1. docs/claude-code/CLAUDE.md       # Visão geral
@@ -88,6 +96,7 @@ fincheck/
 ```
 
 ### 3️⃣ **Revisar Regras de Código** (10 min)
+
 ```bash
 # Leia as regras relevantes:
 - docs/CLEAN_CODE_RULES.md    # Universal
@@ -96,6 +105,7 @@ fincheck/
 ```
 
 ### 4️⃣ **Começar a Desenvolver** ✨
+
 ```bash
 # Ao criar novas features:
 - Novo módulo NestJS?  → Use docs/claude-code/new-api-module.md
@@ -108,6 +118,7 @@ fincheck/
 ## 🎯 Como Trabalhar com Claude Code Agora
 
 ### 👉 Para Cada Sessão
+
 Comece sempre pedindo ao Claude Code para revisar a configuração:
 
 ```
@@ -116,18 +127,21 @@ para entender a arquitetura e estrutura do Fincheck"
 ```
 
 ### 👉 Para Criar um Novo Módulo
+
 ```
 "Use docs/claude-code/new-api-module.md como template para
 criar um novo módulo NestJS chamado [Nome]Module"
 ```
 
 ### 👉 Para Criar um Novo Use Case
+
 ```
 "Use docs/claude-code/new-use-case.md como template para
 criar um novo use case chamado [Nome]UseCase"
 ```
 
 ### 👉 Para Code Review
+
 ```
 "Use docs/claude-code/review.md para fazer code review
 de [arquivo ou PR]"
@@ -137,22 +151,22 @@ de [arquivo ou PR]"
 
 ## 📚 Documentação Index (Acesso Rápido)
 
-| Documento | Uso |
-|-----------|-----|
-| `docs/README.md` | 👈 **COMECE AQUI** - Índice geral |
-| `docs/STRUCTURE.md` | 👈 **VOCÊ ESTÁ AQUI** - Estrutura visual |
-| `docs/claude-code/README.md` | Como usar Claude Code |
-| `docs/claude-code/CLAUDE.md` | Visão geral do projeto |
-| `docs/claude-code/architecture.md` | Arquitetura profunda |
-| `docs/claude-code/domain.md` | Modelo de domínio |
-| `docs/CLEAN_CODE_RULES.md` | Código limpo (universal) |
-| `docs/TYPESCRIPT_RULES.md` | Regras TypeScript |
-| `docs/NEST_RULES.md` | Regras NestJS |
-| `docs/REACT_RULES.md` | Regras React |
-| `docs/claude-code/new-api-module.md` | Template novo módulo |
-| `docs/claude-code/new-use-case.md` | Template novo use case |
-| `docs/claude-code/review.md` | Code review checklist |
-| `.claude-code.json` | Configuração centralizada |
+| Documento                            | Uso                                      |
+| ------------------------------------ | ---------------------------------------- |
+| `docs/README.md`                     | 👈 **COMECE AQUI** - Índice geral        |
+| `docs/STRUCTURE.md`                  | 👈 **VOCÊ ESTÁ AQUI** - Estrutura visual |
+| `docs/claude-code/README.md`         | Como usar Claude Code                    |
+| `docs/claude-code/CLAUDE.md`         | Visão geral do projeto                   |
+| `docs/claude-code/architecture.md`   | Arquitetura profunda                     |
+| `docs/claude-code/domain.md`         | Modelo de domínio                        |
+| `docs/CLEAN_CODE_RULES.md`           | Código limpo (universal)                 |
+| `docs/TYPESCRIPT_RULES.md`           | Regras TypeScript                        |
+| `docs/NEST_RULES.md`                 | Regras NestJS                            |
+| `docs/REACT_RULES.md`                | Regras React                             |
+| `docs/claude-code/new-api-module.md` | Template novo módulo                     |
+| `docs/claude-code/new-use-case.md`   | Template novo use case                   |
+| `docs/claude-code/review.md`         | Code review checklist                    |
+| `.claude-code.json`                  | Configuração centralizada                |
 
 ---
 
@@ -247,16 +261,16 @@ Este projeto segue **DDD + Clean Architecture + Hexagonal Architecture**:
 
 ## 📞 Dúvidas?
 
-| Preciso de... | Vejo em... |
-|---------------|-----------|
-| Visão geral | `docs/README.md` |
-| Estrutura | `docs/STRUCTURE.md` (você está aqui) |
-| Arquitetura | `docs/claude-code/architecture.md` |
-| Domínio | `docs/claude-code/domain.md` |
-| Código limpo | `docs/CLEAN_CODE_RULES.md` |
+| Preciso de...      | Vejo em...                           |
+| ------------------ | ------------------------------------ |
+| Visão geral        | `docs/README.md`                     |
+| Estrutura          | `docs/STRUCTURE.md` (você está aqui) |
+| Arquitetura        | `docs/claude-code/architecture.md`   |
+| Domínio            | `docs/claude-code/domain.md`         |
+| Código limpo       | `docs/CLEAN_CODE_RULES.md`           |
 | Novo módulo NestJS | `docs/claude-code/new-api-module.md` |
-| Novo use case | `docs/claude-code/new-use-case.md` |
-| Code review | `docs/claude-code/review.md` |
+| Novo use case      | `docs/claude-code/new-use-case.md`   |
+| Code review        | `docs/claude-code/review.md`         |
 
 ---
 

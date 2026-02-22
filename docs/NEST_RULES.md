@@ -10,15 +10,15 @@
 
 ### Nomenclatura
 
-| Contexto | Convenção |
-|---|---|
-| Classes | `PascalCase` |
-| Variáveis, funções, métodos | `camelCase` |
-| Arquivos e diretórios | `kebab-case` |
-| Env vars e constantes | `UPPER_CASE` |
-| Booleanos | `isLoading`, `hasError`, `canDelete` |
-| Funções sem retorno | `executeX`, `saveX`, `sendX` |
-| Funções com retorno booleano | `isX`, `hasX`, `canX` |
+| Contexto                     | Convenção                            |
+| ---------------------------- | ------------------------------------ |
+| Classes                      | `PascalCase`                         |
+| Variáveis, funções, métodos  | `camelCase`                          |
+| Arquivos e diretórios        | `kebab-case`                         |
+| Env vars e constantes        | `UPPER_CASE`                         |
+| Booleanos                    | `isLoading`, `hasError`, `canDelete` |
+| Funções sem retorno          | `executeX`, `saveX`, `sendX`         |
+| Funções com retorno booleano | `isX`, `hasX`, `canX`                |
 
 ```typescript
 // ✅
@@ -314,9 +314,7 @@ app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: t
 try {
   await this.paymentGateway.charge(amount);
 } catch (err) {
-  throw new ServiceUnavailableException(
-    `Payment gateway error: ${(err as Error).message}`,
-  );
+  throw new ServiceUnavailableException(`Payment gateway error: ${(err as Error).message}`);
 }
 
 // ❌
@@ -359,7 +357,12 @@ describe('UserService', () => {
     it('should return user when found', async () => {
       // Arrange
       const inputId = 'user-123';
-      const mockUser = { id: inputId, name: 'Alice', email: 'alice@example.com', createdAt: new Date() } as UserEntity;
+      const mockUser = {
+        id: inputId,
+        name: 'Alice',
+        email: 'alice@example.com',
+        createdAt: new Date(),
+      } as UserEntity;
       mockUserRepository.findOne.mockResolvedValue(mockUser);
       // Act
       const actualResult = await service.findById(inputId);
@@ -407,15 +410,15 @@ describe('UserModule (e2e)', () => {
 
 ## Quick Reference
 
-| ✅ Faça | ❌ Evite |
-|---|---|
-| Um export por arquivo | Múltiplos exports no mesmo arquivo |
-| RO-RO para funções com 2+ params | Parâmetros posicionais soltos |
-| DTOs com `class-validator` para input | Validação manual em services |
-| Types simples para output | Expor entities diretamente na response |
-| Early return para guards de condição | Aninhamento de `if` |
-| `readonly` em propriedades imutáveis | Mutação desnecessária |
-| Exceções HTTP do Nest | `throw new Error()` genérico |
-| Um service por entity | Service "God object" |
-| `admin/test` smoke test por controller | Controllers sem cobertura mínima |
-| JSDoc em classes e métodos públicos | Código público sem documentação |
+| ✅ Faça                                | ❌ Evite                               |
+| -------------------------------------- | -------------------------------------- |
+| Um export por arquivo                  | Múltiplos exports no mesmo arquivo     |
+| RO-RO para funções com 2+ params       | Parâmetros posicionais soltos          |
+| DTOs com `class-validator` para input  | Validação manual em services           |
+| Types simples para output              | Expor entities diretamente na response |
+| Early return para guards de condição   | Aninhamento de `if`                    |
+| `readonly` em propriedades imutáveis   | Mutação desnecessária                  |
+| Exceções HTTP do Nest                  | `throw new Error()` genérico           |
+| Um service por entity                  | Service "God object"                   |
+| `admin/test` smoke test por controller | Controllers sem cobertura mínima       |
+| JSDoc em classes e métodos públicos    | Código público sem documentação        |

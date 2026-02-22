@@ -27,6 +27,7 @@ export const Button = ({
 ```
 
 **Regras obrigatórias:**
+
 - Apenas **named exports** — nunca `export default`
 - **Arrow functions** para componentes e hooks
 - Defaults via **destructuring**, nunca dentro do corpo
@@ -61,10 +62,7 @@ Waterfalls são o maior killer de performance. Cada `await` sequencial desnecess
 
 ```typescript
 // ✅ Paralelo — ambas iniciam ao mesmo tempo
-const [user, posts] = await Promise.all([
-  fetchUser(userId),
-  fetchPosts(userId),
-]);
+const [user, posts] = await Promise.all([fetchUser(userId), fetchPosts(userId)]);
 
 // ❌ Sequencial — posts só inicia após user completar
 const user = await fetchUser(userId);
@@ -259,7 +257,7 @@ const [data, setData] = useState(JSON.parse(localStorage.getItem('data') || '{}'
 ```typescript
 // ✅ — não precisa de `count` como dependência
 const increment = useCallback(() => {
-  setCount(prev => prev + 1);
+  setCount((prev) => prev + 1);
 }, []); // dep array vazio é válido
 
 // ❌ — `count` muda, `increment` é recriado toda vez
@@ -272,10 +270,14 @@ const increment = useCallback(() => {
 
 ```typescript
 // ✅
-useEffect(() => { fetch(`/api/user/${userId}`); }, [userId]);
+useEffect(() => {
+  fetch(`/api/user/${userId}`);
+}, [userId]);
 
 // ❌ Objeto muda referência a cada render
-useEffect(() => { fetch(`/api/user/${user.id}`); }, [user]);
+useEffect(() => {
+  fetch(`/api/user/${user.id}`);
+}, [user]);
 ```
 
 ### Não subscreva estado usado só em callbacks
@@ -283,7 +285,9 @@ useEffect(() => { fetch(`/api/user/${user.id}`); }, [user]);
 ```typescript
 // ✅ Usa ref — não causa re-render
 const countRef = useRef(count);
-useEffect(() => { countRef.current = count; }, [count]);
+useEffect(() => {
+  countRef.current = count;
+}, [count]);
 const handleClick = useCallback(() => {
   console.log(countRef.current);
 }, []);
@@ -322,7 +326,7 @@ const handleSearch = (query: string) => {
 ```typescript
 // ✅ Posição do mouse não precisa causar re-render
 const positionRef = useRef({ x: 0, y: 0 });
-window.addEventListener('mousemove', e => {
+window.addEventListener('mousemove', (e) => {
   positionRef.current = { x: e.clientX, y: e.clientY };
 });
 ```
@@ -377,7 +381,7 @@ return <button onClick={navigate}>{isPending ? 'Carregando...' : 'Ir'}</button>;
 // ✅
 const useToggle = (initial = false) => {
   const [on, setOn] = useState(initial);
-  const toggle = useCallback(() => setOn(p => !p), []);
+  const toggle = useCallback(() => setOn((p) => !p), []);
   return [on, toggle] as const; // [boolean, () => void]
 };
 
@@ -397,10 +401,10 @@ const useUser = (id: string) => {
 // ✅ Hook reutilizável — sempre memoize callbacks e valores computados
 const useSearch = <TItem>(items: TItem[], predicate: (item: TItem, q: string) => boolean) => {
   const [query, setQuery] = useState('');
-  
+
   const results = useMemo(
-    () => items.filter(item => predicate(item, query)),
-    [items, query, predicate]
+    () => items.filter((item) => predicate(item, query)),
+    [items, query, predicate],
   );
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -445,11 +449,11 @@ useEffect(() => {
 
 ```typescript
 // ✅ O(1) lookup
-const userMap = new Map(users.map(u => [u.id, u]));
+const userMap = new Map(users.map((u) => [u.id, u]));
 const user = userMap.get(targetId);
 
 // ❌ O(n) por lookup
-const user = users.find(u => u.id === targetId);
+const user = users.find((u) => u.id === targetId);
 ```
 
 ### Combine loops múltiplos em um único passo
@@ -461,11 +465,11 @@ const { active, total } = users.reduce(
     active: acc.active + (user.active ? 1 : 0),
     total: acc.total + user.score,
   }),
-  { active: 0, total: 0 }
+  { active: 0, total: 0 },
 );
 
 // ❌ Duas passagens sobre o mesmo array
-const activeCount = users.filter(u => u.active).length;
+const activeCount = users.filter((u) => u.active).length;
 const totalScore = users.reduce((sum, u) => sum + u.score, 0);
 ```
 
@@ -488,10 +492,10 @@ export function parseConfig(raw: string): Config {
 ```typescript
 // ✅
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const validEmails = emails.filter(e => EMAIL_RE.test(e));
+const validEmails = emails.filter((e) => EMAIL_RE.test(e));
 
 // ❌ Cria nova RegExp a cada iteração
-const validEmails = emails.filter(e => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e));
+const validEmails = emails.filter((e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e));
 ```
 
 ### Early return
@@ -541,9 +545,12 @@ type FormAction =
 
 const formReducer = (state: FormState, action: FormAction): FormState => {
   switch (action.type) {
-    case 'SET_FIELD': return { ...state, [action.field]: action.value };
-    case 'SET_ERROR': return { ...state, errors: { ...state.errors, [action.field]: action.message } };
-    case 'RESET': return initialState;
+    case 'SET_FIELD':
+      return { ...state, [action.field]: action.value };
+    case 'SET_ERROR':
+      return { ...state, errors: { ...state.errors, [action.field]: action.message } };
+    case 'RESET':
+      return initialState;
   }
 };
 ```
@@ -572,7 +579,9 @@ Aplique quando a complexidade justificar:
 // ✅ Callback sempre usa o valor mais recente sem ser dependência
 function useLatest<T>(value: T) {
   const ref = useRef(value);
-  useLayoutEffect(() => { ref.current = value; });
+  useLayoutEffect(() => {
+    ref.current = value;
+  });
   return ref;
 }
 ```
@@ -591,17 +600,17 @@ export default function App() { ... }
 
 ## Quick Reference
 
-| ✅ Faça | ❌ Evite |
-|---|---|
-| `Promise.all()` para operações independentes | `await` sequencial desnecessário |
-| Import direto `@mui/material/Button` | Barrel imports `@mui/material` |
-| `React.cache()` para dedup por request | Fetch duplicado na mesma request |
-| Derivar estado no render | `useEffect` para sincronizar estado derivado |
-| `setState(prev => ...)` funcional | `setState(count + 1)` com dep em closure |
-| Defaults primitivos hoisted | Default objects/arrays inline em props |
-| `{ passive: true }` em scroll listeners | Event listeners bloqueantes |
-| Ternário `condition ? <A /> : null` | `condition && <A />` com valores falsy |
-| Early return explícito | Lógica aninhada desnecessária |
-| `new Map()` para lookups repetidos | `.find()` em loops |
-| Named exports apenas | `export default` |
-| Hook genérico → sempre memoize | `useMemo` cego em hooks específicos |
+| ✅ Faça                                      | ❌ Evite                                     |
+| -------------------------------------------- | -------------------------------------------- |
+| `Promise.all()` para operações independentes | `await` sequencial desnecessário             |
+| Import direto `@mui/material/Button`         | Barrel imports `@mui/material`               |
+| `React.cache()` para dedup por request       | Fetch duplicado na mesma request             |
+| Derivar estado no render                     | `useEffect` para sincronizar estado derivado |
+| `setState(prev => ...)` funcional            | `setState(count + 1)` com dep em closure     |
+| Defaults primitivos hoisted                  | Default objects/arrays inline em props       |
+| `{ passive: true }` em scroll listeners      | Event listeners bloqueantes                  |
+| Ternário `condition ? <A /> : null`          | `condition && <A />` com valores falsy       |
+| Early return explícito                       | Lógica aninhada desnecessária                |
+| `new Map()` para lookups repetidos           | `.find()` em loops                           |
+| Named exports apenas                         | `export default`                             |
+| Hook genérico → sempre memoize               | `useMemo` cego em hooks específicos          |

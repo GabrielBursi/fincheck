@@ -11,21 +11,21 @@ Este projeto foi desenvolvido como parte do curso **[JStack](https://jstack.com.
 
 ### 🔐 Autenticação
 
-* Criação de conta
-* Login seguro com **JWT**
-* Dashboard privado para cada usuário
+- Criação de conta
+- Login seguro com **JWT**
+- Dashboard privado para cada usuário
 
 ### 🏦 Contas Bancárias
 
-* Cadastro, edição e exclusão de contas
-* Gerenciamento de saldos
-* Associação de transações por conta
+- Cadastro, edição e exclusão de contas
+- Gerenciamento de saldos
+- Associação de transações por conta
 
 ### 📈 Visão 360º
 
-* Consolidação de todas as contas e investimentos em uma única tela
-* Relatórios e gráficos para análise financeira
-* Visualização de despesas e receitas organizadas
+- Consolidação de todas as contas e investimentos em uma única tela
+- Relatórios e gráficos para análise financeira
+- Visualização de despesas e receitas organizadas
 
 ---
 
@@ -38,7 +38,6 @@ Este projeto foi desenvolvido como parte do curso **[JStack](https://jstack.com.
 ---
 
 ## 🖼️ Wireframes e Telas 🚧
-
 
 ---
 
@@ -61,7 +60,6 @@ Durante o desenvolvimento do **Fincheck**, foram aplicados conceitos e boas prá
 ```bash
 
 ```
-
 
 ## ✅ Conclusão
 
