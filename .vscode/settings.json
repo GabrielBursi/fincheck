@@ -1,6 +1,191 @@
+// ============================================================================
+// FINCHECK MONOREPO - VSCode Configuration
+// Performance, Consistency, and Developer Experience Optimization
+// ============================================================================
+
 {
-  "conventionalCommits.scopes": ["backend", "swagger"],
+  // ============================================================================
+  // EDITOR & FORMATTING
+  // ============================================================================
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.trimAutoWhitespace": true,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.eol": "\n",
+
+  // ============================================================================
+  // TYPESCRIPT - Project References & Performance
+  // ============================================================================
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "typescript.tsserver.maxTsServerMemory": 4096,
+  "typescript.suggest.autoImports": true,
+  "typescript.suggest.paths": true,
+  "typescript.surveys.enabled": false,
+
+  // Monorepo: Use composite project references for faster compilation
+  "typescript.tsserver.useSeparateSyntaxServer": true,
+
+  // ============================================================================
+  // ESLint Configuration
+  // ============================================================================
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "eslint.codeActionsOnSave.mode": "all",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "jsonc"
+  ],
+
+  // ============================================================================
+  // FILE & FOLDER EXCLUSIONS - Performance Optimization
+  // ============================================================================
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/.nuxt": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/coverage": true,
+    "**/*.tsbuildinfo": true,
+    "**/.turbo": true,
+    "**/.cache": true,
+    "**/.env.local": true,
+    "**/.env.*.local": true,
+    "pnpm-lock.yaml": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/coverage": true,
+    ".next": true,
+    ".nuxt": true,
+    "**/.turbo": true,
+    "pnpm-lock.yaml": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.next/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/.turbo/**": true,
+    "**/.cache/**": true,
+    "coverage/**": true
+  },
+
+  // ============================================================================
+  // PRETTIER Configuration
+  // ============================================================================
+  "prettier.enable": true,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "on"
+  },
+
+  // ============================================================================
+  // LANGUAGE-SPECIFIC SETTINGS
+  // ============================================================================
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
+  // ============================================================================
+  // DEBUGGING
+  // ============================================================================
+  "debug.javascript.autoAttachFilter": "smart",
+  "debug.console.fontSize": 13,
+
+  // ============================================================================
+  // EXPLORER & UI
+  // ============================================================================
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.d.ts, ${capture}.js, ${capture}.jsx, ${capture}.tsx",
+    "*.tsx": "${capture}.d.ts, ${capture}.module.scss, ${capture}.module.css",
+    "*.js": "${capture}.js.map, ${capture}.d.ts, ${capture}.jsx",
+    "package.json": "package-lock.json, pnpm-lock.yaml, yarn.lock, .npmrc, .yarnrc",
+    "tsconfig.json": "tsconfig.*.json, tsconfig.base.json",
+    ".env": ".env.local, .env.*.local, .env.example",
+    "README.md": "CODE_OF_CONDUCT.md, CONTRIBUTING.md, CHANGELOG.md, LICENSE, AUTHORS"
+  },
+  "explorer.excludeGitIgnore": true,
+
+  // ============================================================================
+  // WORKBENCH & GENERAL
+  // ============================================================================
+  "files.autoSave": "onFocusChange",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "breadcrumbs.enabled": true,
+  "editor.minimap.enabled": true,
+  "editor.minimap.showSlider": "always",
+
+  // ============================================================================
+  // PERFORMANCE
+  // ============================================================================
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": false,
+    "strings": false
+  },
+  "editor.parameterHints.enabled": true,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features",
+    "editor.formatOnSave": true
+  },
+
+  // ============================================================================
+  // REPOSITORY SETTINGS
+  // ============================================================================
+  "conventionalCommits.scopes": ["api", "core", "packages"],
   "chat.tools.terminal.autoApprove": {
-    "mv": true
-  }
+    "mv": true,
+    "ls": true,
+    "cd": true,
+    "pwd": true,
+    "cat": true,
+    "echo": true,
+    "touch": true
+  },
+  "git.ignoreLimitWarning": true
 }
+

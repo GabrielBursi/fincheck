@@ -1,0 +1,58 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "fincheck-monorepo",
+    },
+    {
+      "path": "apps/api",
+      "name": "API (NestJS)",
+    },
+    {
+      "path": "packages/core",
+      "name": "Core (Shared)",
+    },
+  ],
+  "settings": {
+    // ============================================================================
+    // MONOREPO-SPECIFIC WORKSPACE SETTINGS
+    // All developers get consistent configuration
+    // ============================================================================
+
+    // Editor defaults
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+
+    // TypeScript
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "typescript.tsserver.maxTsServerMemory": 4096,
+
+    // ESLint
+    "eslint.enable": true,
+    "eslint.codeActionsOnSave.mode": "all",
+
+    // Performance
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/.next": true,
+      "**/dist": true,
+      "**/build": true,
+      "**/coverage": true,
+      "**/.turbo": true,
+      "pnpm-lock.yaml": true,
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/build": true,
+      "**/coverage": true,
+      ".next": true,
+      "**/.turbo": true,
+    },
+  },
+  "extensions": {
+    "recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint", "eamodio.gitlens"],
+  },
+}
