@@ -7,29 +7,20 @@
       "name": "Launch API (NestJS)",
       "program": "${workspaceFolder}/apps/api/src/main.ts",
       "restart": true,
-      "runtimeArgs": [
-        "-r",
-        "ts-node/register",
-        "-r",
-        "tsconfig-paths/register"
-      ],
+      "runtimeArgs": ["-r", "ts-node/register", "-r", "tsconfig-paths/register"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "env": {
         "TS_NODE_PROJECT": "${workspaceFolder}/apps/api/tsconfig.json"
       },
-      "outFiles": [
-        "${workspaceFolder}/apps/api/dist/**/*.js"
-      ]
+      "outFiles": ["${workspaceFolder}/apps/api/dist/**/*.js"]
     },
     {
       "type": "node",
       "request": "attach",
       "name": "Attach to Process",
       "processId": "${command:PickProcess}",
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
+      "skipFiles": ["<node_internals>/**"]
     },
     {
       "type": "chrome",
@@ -37,16 +28,13 @@
       "name": "Launch Chrome",
       "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}/apps/web",
-      "sourceMaps": true,
+      "sourceMaps": true
     }
   ],
   "compounds": [
     {
       "name": "Full Stack (API + Web)",
-      "configurations": [
-        "Launch API (NestJS)",
-        "Launch Chrome"
-      ]
+      "configurations": ["Launch API (NestJS)", "Launch Chrome"]
     }
   ]
 }

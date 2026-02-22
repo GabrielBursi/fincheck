@@ -112,11 +112,7 @@
     {
       "label": "Full Quality Check (lint + typecheck + format)",
       "type": "shell",
-      "dependsOn": [
-        "pnpm run lint",
-        "pnpm run typecheck",
-        "pnpm run format"
-      ],
+      "dependsOn": ["pnpm run lint", "pnpm run typecheck", "pnpm run format"],
       "dependsOrder": "sequence",
       "presentation": {
         "echo": true,
