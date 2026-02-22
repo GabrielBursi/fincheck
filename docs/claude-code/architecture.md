@@ -62,6 +62,7 @@ export interface IUserRepository {
 ## Use Case Contract
 
 Every use case:
+
 1. Receives a single input object (RO-RO pattern).
 2. Returns a single output object or `void`.
 3. Throws a domain error (defined in `core/domain/errors/`) for business violations.
@@ -77,6 +78,7 @@ export class CreateBankAccountUseCase {
 ```
 
 NestJS services in `apps/api/` are thin wrappers that:
+
 - Call the use case `execute()`.
 - Translate domain errors → HTTP exceptions.
 - Map output types to API response types.
@@ -89,15 +91,16 @@ NestJS services in `apps/api/` are thin wrappers that:
 
 ## Error Handling Contract
 
-| Layer | Error type | Handler |
-|---|---|---|
-| `core/domain` | Domain error classes | Thrown by use cases |
-| `apps/api` services | Translate to Nest HTTP exceptions | NestJS |
-| `apps/api` global filter | `HttpExceptionFilter` | Formats JSON response |
+| Layer                    | Error type                        | Handler               |
+| ------------------------ | --------------------------------- | --------------------- |
+| `core/domain`            | Domain error classes              | Thrown by use cases   |
+| `apps/api` services      | Translate to Nest HTTP exceptions | NestJS                |
+| `apps/api` global filter | `HttpExceptionFilter`             | Formats JSON response |
 
 ## Shared Account (BankAccountShare)
 
 A bank account can be shared with another user via email. Permissions are `VIEW` or `EDIT`.
+
 - Share invite stores email even if the invitee is not yet a user.
 - When the invitee signs up, the share record links to their `userId`.
 

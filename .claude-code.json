@@ -62,10 +62,6 @@
       "apps/web": "React frontend application",
       "packages/core": "Domain layer (entities, value objects) + Application layer (use cases)"
     },
-    "workspaces": [
-      "packages/core",
-      "apps/api",
-      "apps/web"
-    ]
+    "workspaces": ["packages/core", "apps/api", "apps/web"]
   }
 }

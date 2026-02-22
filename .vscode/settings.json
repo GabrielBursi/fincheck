@@ -1,9 +1,6 @@
 {
-    "conventionalCommits.scopes": [
-        "backend",
-        "swagger"
-    ],
-    "chat.tools.terminal.autoApprove": {
-        "mv": true
-    }
+  "conventionalCommits.scopes": ["backend", "swagger"],
+  "chat.tools.terminal.autoApprove": {
+    "mv": true
+  }
 }

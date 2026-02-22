@@ -20,6 +20,7 @@ Creates a new use case in `packages/core/application/use-cases/`.
 Example: `/new-use-case bank-accounts UpdateBankAccount`
 
 Creates:
+
 - `packages/core/application/use-cases/bank-accounts/update-bank-account.use-case.ts`
 - `packages/core/application/use-cases/bank-accounts/update-bank-account.use-case.spec.ts`
 

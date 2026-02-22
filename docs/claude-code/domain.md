@@ -3,56 +3,69 @@
 ## Entities
 
 ### User
+
 Core aggregate root. Owns everything.
+
 - `id: string (UUID)`
 - `name: string`
 - `email: string` — unique
 - `password: string` — hashed
 
 ### BankAccount
+
 Represents a financial account (checking, investment, cash).
+
 - `id`, `userId`, `name`, `initialBalance: number`, `type: BankAccountType`, `color: string`
 - Current balance = `initialBalance` + sum of INCOME transactions − sum of EXPENSE transactions
 - Can be shared with other users via `BankAccountShare`
 
 ### Transaction
+
 A financial movement linked to a bank account.
+
 - `id`, `userId`, `bankAccountId`, `categoryId?`, `name`, `value: number`, `date: Date`, `type: TransactionType`
 - `categoryId` is nullable — a transaction can be uncategorized
 
 ### Category
+
 User-defined label for grouping transactions.
+
 - `id`, `userId`, `name`, `icon`, `type: TransactionType`
 - Type is either INCOME or EXPENSE — a category only applies to one direction
 
 ### BankAccountShare
+
 Represents a sharing invitation for a bank account.
+
 - `id`, `bankAccountId`, `userId?`, `email`, `permission: BankAccountPermission`
 - `userId` is null until the invitee registers
 
 ### Goal
+
 A savings or financial target.
+
 - `id`, `userId`, `name`, `targetValue: number`, `currentValue: number`, `deadline?: Date`
 - Can be associated with multiple bank accounts
 
 ## Value Objects (to implement in `core/domain/value-objects/`)
 
-| Value Object | Rules |
-|---|---|
-| `Money` | Non-negative, has currency |
-| `Email` | Valid format |
-| `BankAccountType` | `CHECKING \| INVESTMENT \| CASH` |
-| `TransactionType` | `INCOME \| EXPENSE` |
-| `BankAccountPermission` | `VIEW \| EDIT` |
+| Value Object            | Rules                            |
+| ----------------------- | -------------------------------- |
+| `Money`                 | Non-negative, has currency       |
+| `Email`                 | Valid format                     |
+| `BankAccountType`       | `CHECKING \| INVESTMENT \| CASH` |
+| `TransactionType`       | `INCOME \| EXPENSE`              |
+| `BankAccountPermission` | `VIEW \| EDIT`                   |
 
 Use const objects + union types (no `enum`):
+
 ```typescript
 export const BankAccountType = {
   CHECKING: 'CHECKING',
   INVESTMENT: 'INVESTMENT',
   CASH: 'CASH',
 } as const;
-export type BankAccountType = typeof BankAccountType[keyof typeof BankAccountType];
+export type BankAccountType = (typeof BankAccountType)[keyof typeof BankAccountType];
 ```
 
 ## Repository Interfaces (to define in `core/domain/repositories/`)
@@ -78,10 +91,12 @@ NestJS services map these → appropriate HTTP exceptions (404, 403, 409, 400).
 ## Use Cases per Domain
 
 ### Auth
+
 - `SignUpUseCase` — validate email uniqueness, hash password, create user
 - `SignInUseCase` — validate credentials, return JWT
 
 ### BankAccounts
+
 - `CreateBankAccountUseCase`
 - `ListBankAccountsUseCase` — includes computed current balance
 - `UpdateBankAccountUseCase` — validate ownership
@@ -89,15 +104,18 @@ NestJS services map these → appropriate HTTP exceptions (404, 403, 409, 400).
 - `ShareBankAccountUseCase` — validate ownership + permission level
 
 ### Transactions
+
 - `CreateTransactionUseCase`
 - `ListTransactionsUseCase` — filters: month, year, bankAccountId?, type?
 - `UpdateTransactionUseCase` — validate ownership
 - `DeleteTransactionUseCase` — validate ownership
 
 ### Categories
+
 - `ListCategoriesUseCase`
 
 ### Goals
+
 - `CreateGoalUseCase`
 - `ListGoalsUseCase`
 - `GetGoalUseCase`
@@ -105,4 +123,5 @@ NestJS services map these → appropriate HTTP exceptions (404, 403, 409, 400).
 - `DeleteGoalUseCase` — validate ownership
 
 ### Users
+
 - `GetMeUseCase` — return current user profile (no password)
